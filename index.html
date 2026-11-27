@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CPU Scheduling Visualizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+
+    <h1>CPU Scheduling Visualizer</h1>
+    <p class="subtitle">Add processes, choose an algorithm, and see how the CPU runs them.</p>
+
+    <div class="layout">
+
+      <!-- Left side: add and manage processes -->
+      <div>
+        <div class="card">
+          <h2>Processes</h2>
+
+          <div class="inputs">
+            <label>Name <input id="name" type="text" maxlength="6" placeholder="auto"></label>
+            <label>Arrival time <input id="arrival" type="number" min="0" value="0"></label>
+            <label>Burst time <input id="burst" type="number" min="1" value="1"></label>
+          </div>
+          <button class="main-button wide" onclick="addProcess()">Add process</button>
+          <p id="error"></p>
+
+          <p class="muted">Load an example:</p>
+          <div class="buttons">
+            <button onclick="loadExample(0)">FCFS example</button>
+            <button onclick="loadExample(1)">SJF example</button>
+            <button onclick="loadExample(2)">SRTF example</button>
+            <button onclick="loadExample(3)">Idle time example</button>
+          </div>
+
+          <table>
+            <tr><th>Process</th><th>Arrival</th><th>Burst</th><th></th></tr>
+            <tbody id="processTable"></tbody>
+          </table>
+          <br>
+          <button onclick="clearAll()">Clear all</button>
+        </div>
+      </div>
+
+      <!-- Right side: algorithm buttons, Gantt chart and results -->
+      <div>
+        <div class="buttons">
+          <button id="btnFCFS" onclick="chooseAlgorithm('FCFS')">FCFS</button>
+          <button id="btnSJF" onclick="chooseAlgorithm('SJF')">SJF</button>
+          <button id="btnSRTF" onclick="chooseAlgorithm('SRTF')">SRTF</button>
+          <button id="btnALL" onclick="chooseAlgorithm('ALL')">Compare all</button>
+          <button class="main-button" onclick="playAnimation()">Play step by step</button>
+        </div>
+
+        <div id="charts"></div>
+        <div id="results"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

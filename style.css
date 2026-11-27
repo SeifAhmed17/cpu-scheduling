@@ -1,0 +1,249 @@
+/* ---------- Colors ---------- */
+:root {
+  --background: #141a26;
+  --card: #1b2231;
+  --line: #303a4f;
+  --text: #e6eaf2;
+  --muted: #93a0b8;
+  --accent: #ffb454;
+}
+
+/* ---------- Page ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px 16px;
+  background: var(--background);
+  color: var(--text);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+}
+
+.page {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+h2 {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+}
+
+h2 small {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.subtitle {
+  margin: 4px 0 20px 0;
+  color: var(--muted);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* Two columns: processes on the left, results on the right */
+.layout {
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  gap: 20px;
+}
+
+.layout > div {
+  min-width: 0;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+}
+
+/* ---------- Buttons and inputs ---------- */
+button {
+  background: #232c3e;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 7px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+button:hover {
+  border-color: var(--muted);
+}
+
+.main-button,
+.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #2a1800;
+  font-weight: bold;
+}
+
+.wide {
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+label {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+input {
+  width: 100%;
+  margin-top: 4px;
+  padding: 7px;
+  background: var(--background);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+#error {
+  min-height: 20px;
+  margin: 8px 0;
+  color: #ff8080;
+}
+
+/* ---------- Tables ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+}
+
+th {
+  color: var(--muted);
+  font-weight: normal;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  margin-right: 6px;
+}
+
+.best {
+  background: rgba(255, 180, 84, 0.15);
+}
+
+.best-label {
+  background: var(--accent);
+  color: #2a1800;
+  border-radius: 10px;
+  padding: 1px 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* ---------- Gantt chart ---------- */
+.gantt {
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+/* One block = colored box + start and end time under it.
+   The width comes from flex-grow, which is set in script.js. */
+.block {
+  flex-basis: 0;
+  min-width: 46px;
+}
+
+.box {
+  height: 54px;
+  margin: 0 1px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #10141d;
+  font-weight: bold;
+}
+
+.idle {
+  background: #3a4356;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.times {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 2px 0 2px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* The newest block fades in during the animation */
+.new {
+  animation: appear 0.4s;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ---------- Summary cards ---------- */
+.kpis {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.kpi-number {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 850px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .kpis {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
